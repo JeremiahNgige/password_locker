@@ -81,6 +81,8 @@ def main():
                               +"Log Out"+ "\n")
                         selected = input("enter number: ")
                         
+                        #add a credential 
+                        
                         if selected == "1":
                             while True:    
                                 choice = input("Add credential: y/n"+"\n")
@@ -100,6 +102,54 @@ def main():
                                 elif choice == "n":
                                     break
                                 else:
-                                    print("Enter with a y or n")    
+                                    print("Enter with a y or n") 
+                                    
+                        #view credentials list            
+                        
+                        if selected == "2":
+                            while True:
+                                print("This are all your credentails below: ")
+                                
+                                if display_credentials():
+                                    for credentials in display_credentials():
+                                        print(f"Username: {credential.username_cred}"+"\n"
+                                              +f"Password: {credential.password_cred}" +"\n")
+                                        
+                                else:
+                                    print("\n"+ f"{login_username} you dont have any credentials saved yet"
+                                          +"\n")       
+
+                                menu = input("Go back to Menu: y/n"+"\n").casefold()
+                                if menu is "y":
+                                    break
+                                elif menu == "n":
+                                    continue
+                                else:
+                                    print("enter with a y or n")
+                        
+                        #search a credential by entering a username
+                        if selected == "4":
+                            while True:
+                                search = input("Enter username of credential you want to delete: "+"\n")
+                                
+                                if credentials_exists(search):
+                                    found_credential = search_credentials(search)
+                                    print(f"Username: {found_credential.username_cred}"+"\n"+
+                                          f"Password: {found_credential.password_cred}")
+                                    delete = input("Delete it: y/n ?"+"\n").casefold()
+                                    if delete == "y":
+                                        delete_credentials(found_credential)
+                                        print("Credential has been deleted successfully!!")
+                                        break
+                                    elif delete == "n":
+                                        continue
+                                else:
+                                    print("The Searched credential does not exist")
+                                    break
+                                
+                        #
+                            
+                                    
+
 if __name__ == "__main__":
     main()
