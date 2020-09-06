@@ -15,7 +15,7 @@ def save_credentials(credentials):
     '''
     function to save new credentials
     '''
-    credentials.save_credentials
+    credentials.save_credentials()
     
 def find_credentials(cls, username):
     '''
@@ -43,7 +43,7 @@ def display_credentials():
 
 def main():
     while True:
-        print("PASSWORD LOCKER" + "\n"+ "*"*29 +"\n" + "To create a new acc enter :'reg' " 
+        print("\n"+"*"*29 +"\n" +"\t" + "PASSWORD LOCKER" + "\n"+ "*"*29 +"\n" + "To create a new acc enter :'reg' " 
               +"\n" + "To login to your account enter: 'log' " +"\n")
         sh = input("enter here: ").lower()
         
@@ -87,9 +87,10 @@ def main():
                             while True:    
                                 choice = input("Add credential: y/n"+"\n")
                                 if choice == "y":
-                                    username_cred = input("enter credential username: "+"\n")
+                                    print("enter credential username: "+"\n")
+                                    username_cred = input()
                                     pwd_generate = input("Do you want a password generated for you: y/n"+"\n")
-                                        
+                                    #generate password   
                                     if pwd_generate == "y":
                                         password_cred = random.randint(11111,111111)
                                         print (f"username: {username_cred}" + "\n" + f"password: {password_cred}"+"\n")
@@ -111,7 +112,7 @@ def main():
                                 print("This are all your credentails below: ")
                                 
                                 if display_credentials():
-                                    for credentials in display_credentials():
+                                    for credential in display_credentials():
                                         print(f"Username: {credential.username_cred}"+"\n"
                                               +f"Password: {credential.password_cred}" +"\n")
                                         
@@ -120,13 +121,32 @@ def main():
                                           +"\n")       
 
                                 menu = input("Go back to Menu: y/n"+"\n").casefold()
-                                if menu is "y":
+                                if menu == "y":
                                     break
                                 elif menu == "n":
                                     continue
                                 else:
                                     print("enter with a y or n")
                         
+                        #search for an existing credential
+                        if selected == "3":
+                            while True:
+                                c_search= input("Continue to search: y/n"+"\n").casefold()
+                                if c_search == str:
+                                    search_name = input("Enter username of credential: "+"\n")
+                                    
+                                    if credentials_exists(search_name):
+                                        searched_credential = search_credentials(search_name)
+                                        print(f"Username: {searched_credential.username_cred}"+"\n"+
+                                              f"Password: {searched_credential.password_cred}")
+                                    else:
+                                        print("The credential does not exist")
+                                        
+                                elif c_search == "n":
+                                    break
+                                else:
+                                    print("Enter with a y or n")
+                                             
                         #search a credential by entering a username
                         if selected == "4":
                             while True:
@@ -147,7 +167,7 @@ def main():
                                     print("The Searched credential does not exist")
                                     break
                                 
-                        #
+                        #Log out
                             
                                     
 
