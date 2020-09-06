@@ -1,5 +1,6 @@
 import unittest
 from credentials import Credentials
+import pyperclip
 
 class TestCredentials(unittest.TestCase):
     '''
@@ -40,12 +41,22 @@ class TestCredentials(unittest.TestCase):
         '''
         
         self.new_credentials.save_credentials()
-        test_credentials = Credentials("jane","111222")
+        test_credentials = Credentials("mainjunior","334455")
         test_credentials.save_credentials()
-        self.assertEqual(test_credentials.username_cred,"jane")
-        self.assertEqual(test_credentials.password_cred,"111222")
-        self.assertEqual(len(Credentials.credentials_list),2)
         
+        self.assertEqual(len(Credentials.credentials_list),2)
+
+    def test_delete_credentials(self):
+        '''
+        test to ensure credentials can be deleted from credentials_list
+        '''
+        self.new_credentials.save_credentials()
+        test_credentials = Credentials("mainjunior","334455")
+        test_credentials.save_credentials
+        
+        self.new_credentials.delete_credentials
+        self.assertEqual(len(Credentials.credentials_list),1)
+                
     def test_search_credentials(self):
         '''
         test to ensure that credentials can be found with a username
@@ -58,16 +69,6 @@ class TestCredentials(unittest.TestCase):
         found_credential = Credentials.find_credentials_by_username("mainjunior") 
         self.assertEqual(found_credential.password_cred,test_credentials.password_cred)  
         
-    def test_delete_credentials(self):
-        '''
-        test to ensure credentials can be deleted from credentials_list
-        '''
-        self.new_credentials.save_credentials()
-        test_credentials = Credentials("mainjunior","334455")
-        test_credentials.save_credentials()
-        
-        self.new_credentials.delete_credentials()
-        self.assertEqual(len(Credentials.credentials_list),1)
         
         
 if __name__ == "__main__":

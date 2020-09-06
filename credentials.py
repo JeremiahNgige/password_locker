@@ -22,7 +22,7 @@ class Credentials:
         '''
         method to delete credential from credentials_list 
         '''
-        Credentials.credentials_list.remove(self)       
+        Credentials.credentials_list.remove(self)      
         
     @classmethod   
     def find_credentials_by_username(cls,username):
