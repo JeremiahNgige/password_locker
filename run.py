@@ -81,10 +81,25 @@ def main():
                               +"Log Out"+ "\n")
                         selected = input("enter number: ")
                         
-                        
-                            
-            
-            
-        
+                        if selected == "1":
+                            while True:    
+                                choice = input("Add credential: y/n"+"\n")
+                                if choice == "y":
+                                    username_cred = input("enter credential username: "+"\n")
+                                    pwd_generate = input("Do you want a password generated for you: y/n"+"\n")
+                                        
+                                    if pwd_generate == "y":
+                                        password_cred = random.randint(11111,111111)
+                                        print (f"username: {username_cred}" + "\n" + f"password: {password_cred}"+"\n")
+                                    elif pwd_generate == "n":   
+                                        password_cred = input("enter credential password: ")
+                                        print (f"username: {username_cred}" + "\n" + f"password: {password_cred}"+"\n")
+                                    else:
+                                        print("Enter with a y or n")
+                                    save_credentials(create_credentials(username_cred,password_cred))
+                                elif choice == "n":
+                                    break
+                                else:
+                                    print("Enter with a y or n")    
 if __name__ == "__main__":
     main()
