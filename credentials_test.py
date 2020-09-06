@@ -11,10 +11,8 @@ class TestCredentials(unittest.TestCase):
         '''
         test to setup objects in the class 
         '''
-        acc_name = input("enter username: ").casefold()
-        acc_password = input("enter password: ").casefold()
     
-        self.new_credentials = Credentials(acc_name, acc_password)
+        self.new_credentials = Credentials("mainjunior", "334455")
         
     def test_init(self):
         '''
@@ -40,11 +38,9 @@ class TestCredentials(unittest.TestCase):
         '''
         test to make sure we can save multiple credentials
         '''
-        acc_name1 = input("enter another username: ")
-        acc_password1 = input("enter another password: ")
         
         self.new_credentials.save_credentials()
-        test_credentials = Credentials(acc_name1,acc_password1)
+        test_credentials = Credentials("jane","111222")
         test_credentials.save_credentials()
         self.assertEqual(test_credentials.username_cred,"jane")
         self.assertEqual(test_credentials.password_cred,"111222")
@@ -54,16 +50,24 @@ class TestCredentials(unittest.TestCase):
         '''
         test to ensure that credentials can be found with a username
         '''
-        acc_name2 = input("enter another username: ")
-        acc_password2 = input("enter another password: ")
-        credential_search = input("enter username to search cred: ")
         
         self.new_credentials.save_credentials()
-        test_credentials = Credentials(acc_name2,acc_password2)
+        test_credentials = Credentials("mainjunior","334455")
         test_credentials.save_credentials()     
         
-        found_credential = Credentials.find_credentials_by_username(credential_search) 
+        found_credential = Credentials.find_credentials_by_username("mainjunior") 
         self.assertEqual(found_credential.password_cred,test_credentials.password_cred)  
+        
+    def test_delete_credentials(self):
+        '''
+        test to ensure credentials can be deleted from credentials_list
+        '''
+        self.new_credentials.save_credentials()
+        test_credentials = Credentials("mainjunior","334455")
+        test_credentials.save_credentials()
+        
+        self.new_credentials.delete_credentials()
+        self.assertEqual(len(Credentials.credentials_list),1)
         
         
 if __name__ == "__main__":
