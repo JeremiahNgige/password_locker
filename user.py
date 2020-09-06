@@ -2,7 +2,7 @@ class User:
     ''' 
     class that geneartes new instances of users
     '''
-    user = None
+    user_list = []
     
     def __init__(self, username, password):
         '''
@@ -10,5 +10,11 @@ class User:
         '''
         self.username = username
         self.password = password
+        
+    def save_user(self):
+        '''
+        method to save a new user instance
+        '''
+        User.user_list.append(self)
         
     
