@@ -9,10 +9,7 @@ class TestUser(unittest.TestCase):
         '''
         method to create an instance of a user to test
         '''
-        x = input("enter your username: ")
-        y = input("enter password: ")
-        
-        self.new_user = User(x,y)
+        self.new_user = User("johndoe","232323")
         
     def test_init(self):
         '''
