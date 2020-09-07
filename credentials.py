@@ -1,61 +1,59 @@
 class Credentials:
-    '''
-    class that generates new instances of user accounts credentials
-    '''
+    """
+    create class for user credentials
+    """
+
+    def __init__(self, account_name, account_username, account_password):
+        self.account_name = account_name
+        self.account_username = account_username
+        self.account_password = account_password
+
     credentials_list = []
-    
-    def __init__(self,username_cred,password_cred):
-        '''
-        method to intialise the username and password cred of an account
-        '''
-        self.username_cred = username_cred
-        self.password_cred = password_cred
-        
-    @classmethod    
+
     def save_credentials(self):
-        '''
-        method to save the accounts
-        '''
-        Credentials.credentials_list.append(self)
-        
-    @classmethod 
+        """
+        method that saves credentials' object in credentials' list
+        """
+        self.credentials_list.append(self)
+
     def delete_credentials(self):
-        '''
-        method to delete credential from credentials_list 
-        '''
-        Credentials.credentials_list.remove(self)      
-        
-    @classmethod   
-    def find_credentials_by_username(cls,username):
-        '''
-        method to search a credentials in credentials_list by the username
-        
-        arg:
-            cls is the to make the class an argument and username to take in 
-            a username as the argument
-        '''
-        
+        """
+        method that deletes a credential
+        """
+        Credentials.credentials_list.remove(self)
+
+    @classmethod
+    def locate_by_name(cls, account_name):
+        """
+        method that takes in a name and returns a credential that matches the specific name
+        Args:
+            name: account_name that has a password
+        Returns:
+            The account_name and its corresponding password
+        """
         for credential in cls.credentials_list:
-            if credential.username_cred == username:
+            if credential.account_name == account_name:
                 return credential
 
     @classmethod
-    def credentials_exists(cls, username):
-        '''
+    def credentials_exists(cls, name):
+        """
         method that checks if credentials exists from credentials_list.
         Args:
-            username: Username to search for its existance 
-        '''
+            name: Username to search for its existance
+        Returns:
+            Boolean: True or false depending if the credentials exists 
+        """
         for credential in cls.credentials_list:
-            if credential.username_cred == username:
+            if credential.account_name == name:
                 return True
             return False
 
     @classmethod
     def display_credentials(cls):
-        '''
-        method that returns all content in credentials_list
-        '''
+        """
+        method that returns credentials' list
+        """
         return cls.credentials_list
-    
-  
+
+    # pyperclip.copy(credentials_located.account_password)

@@ -15,15 +15,15 @@ This is an application to help manage passwords of given credentials given their
 
 ## How to Use The app
 
-* Once you launch, You can either create a new user, or login  
+* Once you launch, You can either create a new user, login or exit the app  
 * If you choose to login(log), use: user1 as username and 123 as passWord
 * If you choose to create a new account, use reg as the code and follow the prompts.
 * Once logged in, you can:
 
-1. Add Credentials.
-2. View saved Credentials.
-3. Search Credentials.
-4. Delete credentials.
+1. View Saved credentials.
+2. Add Credentials.
+3. Delete Credentials.
+4. Search credentials.
 5. Log Out.
 
 ### Running unit tests
